@@ -24,7 +24,7 @@ class ProStageController extends AbstractController
     public function entreprises(): Response
     {
         return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage',
+            'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage ',
         ]);
     }
 
@@ -39,12 +39,12 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/stages/{id}", name="stages")
+     * @Route("/stages/", name="stages")
      */
     public function stage(): Response
     {
         return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'Cette page affichera le descriptif du stage ayant pour identifiant id',
+            'controller_name' => 'Cette page affichera le descriptif du stage ayant pour identifiant',
         ]);
     }
 }
