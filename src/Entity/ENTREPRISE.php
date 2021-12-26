@@ -33,7 +33,7 @@ class ENTREPRISE
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $URLsite;
 
@@ -83,7 +83,7 @@ class ENTREPRISE
         return $this->URLsite;
     }
 
-    public function setURLsite(string $URLsite): self
+    public function setURLsite(?string $URLsite): self
     {
         $this->URLsite = $URLsite;
 
