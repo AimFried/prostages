@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FORMATIONRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class FORMATION
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $nomCourt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=STAGE::class, mappedBy="formation")
+     */
+    private $stage;
+
+    public function __construct()
+    {
+        $this->stage = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,33 @@ class FORMATION
     public function setNomCourt(?string $nomCourt): self
     {
         $this->nomCourt = $nomCourt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|STAGE[]
+     */
+    public function getStage(): Collection
+    {
+        return $this->stage;
+    }
+
+    public function addStage(STAGE $stage): self
+    {
+        if (!$this->stage->contains($stage)) {
+            $this->stage[] = $stage;
+            $stage->addFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(STAGE $stage): self
+    {
+        if ($this->stage->removeElement($stage)) {
+            $stage->removeFormation($this);
+        }
 
         return $this;
     }
