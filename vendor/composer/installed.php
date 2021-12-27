@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '663ac99e9ea4fffe67b5218e1ac84d096ba4d4c2',
+        'reference' => '4c77e62924fd76b8e5a90c68a62f3db2ea0ead67',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '663ac99e9ea4fffe67b5218e1ac84d096ba4d4c2',
+            'reference' => '4c77e62924fd76b8e5a90c68a62f3db2ea0ead67',
             'dev_requirement' => false,
         ),
         'composer/package-versions-deprecated' => array(
@@ -179,6 +179,15 @@
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
             'reference' => 'ee0db30118f661fb166bcffbf5d82032df484697',
+            'dev_requirement' => false,
+        ),
+        'fakerphp/faker' => array(
+            'pretty_version' => 'v1.17.0',
+            'version' => '1.17.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../fakerphp/faker',
+            'aliases' => array(),
+            'reference' => 'b85e9d44eae8c52cca7aa0939483611f7232b669',
             'dev_requirement' => false,
         ),
         'friendsofphp/proxy-manager-lts' => array(
@@ -436,8 +445,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0',
+                0 => '1.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
