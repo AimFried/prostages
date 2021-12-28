@@ -1,4 +1,4 @@
 @ECHO OFF
 setlocal DISABLEDELAYEDEXPANSION
-SET BIN_TARGET=%~dp0/../symfony/phpunit-bridge/bin/simple-phpunit
+SET BIN_TARGET=%~dp0/simple-phpunit
 php "%BIN_TARGET%" %*
