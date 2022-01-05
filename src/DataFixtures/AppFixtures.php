@@ -14,6 +14,37 @@ class AppFixtures extends Fixture
     {
         // Création d'un générateur de données avec la librairie Faker
         $faker = \Faker\Factory::create('fr_FR');
+
+        // Création des différentes formations
+        $dutInfo = new Formation();
+        $dutInfo->setNomLong("DUT Informatique");
+        $dutInfo->setNomCourt("DUT Info");
+
+        $dutInfoImagNum = new Formation();
+        $dutInfoImagNum->setNomLong("DUT Informatique et Imagerie Numérique");
+        $dutInfoImagNum->setNomCourt("DUT IIM");
+
+        $dutGea = new Formation();
+        $dutGea->setNomLong("DUT Gestion des entreprises et des administrations");
+        $dutGea->setNomCourt("DUT GEA");
+
+        $lpProg = new Formation();
+        $lpProg->setNomLong("Licence programmation");
+        $lpProg->setNomCourt("LP");
+
+        $dutGenieLogiciel = new Formation();
+        $dutGenieLogiciel->setNomLong("DUT Genie Logiciel");
+        $dutGenieLogiciel->setNomCourt("DUT GL");
+
+
+        $tableauFormations=array($dutInfo, $dutInfoImagNum, $dutGea, $lpProg, $dutGenieLogiciel);
+
+        //Enregistrement et vérification des formations
+        foreach($tableauFormations as $formation)
+        {
+            $manager->persist($formation);
+        }
+
         //Création de 15 entreprises
         for($i = 0; $i < 16 ; $i++)
         {
@@ -23,50 +54,27 @@ class AppFixtures extends Fixture
             $entreprise->setAdresse($faker->address);
             $entreprise->setActivite($faker->sentence($nbWords = 1, $variableNbWords = true));
             $entreprise->setURLsite($faker->url);
-            $entreprise[] = $entreprise; 
-            $manager->persist($entreprise);
-
-                       
-        }
-
-        /*****************************
-         ***  LISTE DES FORMATIONS ***
-         *****************************/
-        $formationListe = array(
-            //Liste des formations informatique
-            "DUT INFO" => "Diplôme Universitaire Technologique - Informatique",
-            "LP PROG " => "Licence Professionels - Programmation Avancee",
-            "LP NUM" => "Licence Professionnels - Numérique"
-            );
-
-        foreach($formationListe as $nomCourtFormation => $nomLongFormation)
-        {
-            // Création module Formation
-            $formation = new Formation();
-            $formation->setNomLong($nomLongFormation);
-            $formation->setNomCourt($nomCourtFormation);
             
-            //Création de 15 stages
-            for($j = 0 ; $j < 16 ; $j++)
-            {
-                // Création module Stage
-                $stage = new Stage();
-                $stage->setTitre($faker->sentence($nbWords = 6, $variableNbWords = true));
-                $stage->setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
-                $stage->setEmail($faker->email);
-                
-                //Relation entre Formation et Stage
-               $stage->addFormation($formation);
-
-               $numEntreprise = $faker->numberBetween($min =0,$max=15);
-               $stage->setEntreprise($entreprise[$numEntreprise]);
-               $entreprise[$numEntreprise]->addStage($stage);
-
-                $manager->persist($stage);
-                $manager->persist($entreprise[$numEntreprise]);
-            }
-            $manager->persist($formation);
+            $entreprises[] = $entreprise; 
+            $manager->persist($entreprise);                       
         }
+           
+         //Création de 15 stages
+        for($i = 0 ; $i < 16 ; $i++)
+        {
+            $entrepriseAssocieAuStage = $faker->numberBetween($min=0, $max=14);
+            $formationAssocieAuStage = $faker->numberBetween($min=0, $max=4);
+
+            // Création module Stage
+            $stage = new Stage();
+            $stage->setTitre($faker->realText(50,2));
+            $stage->setMission($faker->realText(200,2));
+            $stage->setEmail($faker->email);
+            $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
+            $stage->addFormation($tableauFormations[$formationAssocieAuStage]);
+            $manager->persist($stage);               
+        }
+        
         //Envoi des objets crées en base de données
         $manager->flush();
     }
