@@ -18,9 +18,9 @@ class AppFixtures extends Fixture
         $nbrStage = 15;
         // Création module Stage
         $stage = new Stage();
-        $stage->setNomLong($titreStage);
-        $stage->setNomCourt($missionStage);
-        $stage->setNomCourt($mailStage);
+        $stage->setTitre($faker->sentence($nbWords = 6, $variableNbWords = true));
+        $stage->setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
+        $stage->setMail($mailStage);
         
         $manager->persist($entreprise);
 
@@ -34,10 +34,10 @@ class AppFixtures extends Fixture
         $nbrEntreprise = 10;
         // Création module Entreprise
         $entreprise = new Entreprise();
-        $entreprise->setNomLong($nomEntreprise);
-        $entreprise->setNomCourt($adresseEntreprise);
-        $entreprise->setNomCourt($activiteEntreprise);
-        $entreprise->setNomCourt($siteURLEntreprise);
+        $entreprise->setNom($nomEntreprise);
+        $entreprise->setAdresse($adresseEntreprise);
+        $entreprise->setActivite($activiteEntreprise);
+        $entreprise->setSiteURL($fake->url);
         
         $manager->persist($entreprise);
 
