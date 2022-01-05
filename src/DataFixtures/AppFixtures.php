@@ -14,9 +14,6 @@ class AppFixtures extends Fixture
     {
         // Création d'un générateur de données avec la librairie Faker
         $faker = \Faker\Factory::create('fr_FR');
-
-        
-        
         //Création de 15 entreprises
         for($i = 0; $i < 16 ; $i++)
         {
@@ -26,9 +23,10 @@ class AppFixtures extends Fixture
             $entreprise->setAdresse($faker->address);
             $entreprise->setActivite($faker->sentence($nbWords = 1, $variableNbWords = true));
             $entreprise->setURLsite($faker->url);
-            $entreprises[] = $entreprise;
+            $entreprise[] = $entreprise; 
             $manager->persist($entreprise);
-            
+
+                       
         }
 
         /*****************************
@@ -60,7 +58,7 @@ class AppFixtures extends Fixture
                 //Relation entre Formation et Stage
                $stage->addFormation($formation);
 
-               $numEntreprise = $faker->numberBetween($min =0,$max=19);
+               $numEntreprise = $faker->numberBetween($min =0,$max=15);
                $stage->setEntreprise($entreprise[$numEntreprise]);
                $entreprise[$numEntreprise]->addStage($stage);
 
