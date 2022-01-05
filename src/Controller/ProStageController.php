@@ -13,8 +13,11 @@ class ProStageController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('pro_stage/accueil.html.twig', [
-            'controller_name' => 'Bienvenue sur la page d\'accueil de Prostages',
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+
+        $stages=$repositoryStage->findAll();
+
+        return $this->render('pro_stage/accueil.html.twig', ['listeStages' =>$stage,
         ]);
     }
 
@@ -23,8 +26,11 @@ class ProStageController extends AbstractController
      */
     public function entreprises(): Response
     {
-        return $this->render('pro_stage/entreprises.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage ',
+        $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
+
+        $entreprises=$repositoryEntreprise->findAll();
+
+        return $this->render('pro_stage/entreprises.html.twig', ['listeEntreprise'=>$entreprises,
         ]);
     }
 
@@ -33,8 +39,11 @@ class ProStageController extends AbstractController
      */
     public function formations(): Response
     {
-        return $this->render('pro_stage/formations.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des formations de l\'IUT',
+        $repositoryFormation=$this->getDoctrine()->getRepository(formation::class);
+
+        $formations=$repositoryFormations->findAll();
+
+        return $this->render('pro_stage/formations.html.twig', ['listeFormations'=>$formations,
         ]);
     }
 
@@ -43,6 +52,6 @@ class ProStageController extends AbstractController
      */
     public function stage($id): Response
     {
-        return $this->render('pro_stage/stages.html.twig',['idRessource'=>$id ]);
+        return $this->render('pro_stage/stages.html.twig',['id_stage'=>$id ]);
     }
 }
