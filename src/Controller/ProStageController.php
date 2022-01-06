@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\STAGE;
+use App\Entity\ENTREPRISE;
+use App\Entity\FORMATION;
 
 class ProStageController extends AbstractController
 {
@@ -17,7 +20,7 @@ class ProStageController extends AbstractController
 
         $stages=$repositoryStage->findAll();
 
-        return $this->render('pro_stage/accueil.html.twig', ['listeStages' =>$stage,
+        return $this->render('pro_stage/accueil.html.twig', ['listeStages' =>$stages,
         ]);
     }
 
@@ -39,8 +42,9 @@ class ProStageController extends AbstractController
      */
     public function formations(): Response
     {
-        $repositoryFormation=$this->getDoctrine()->getRepository(formation::class);
+        $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
 
+        
         $formations=$repositoryFormations->findAll();
 
         return $this->render('pro_stage/formations.html.twig', ['listeFormations'=>$formations,
@@ -52,6 +56,10 @@ class ProStageController extends AbstractController
      */
     public function stage($id): Response
     {
-        return $this->render('pro_stage/stages.html.twig',['id_stage'=>$id ]);
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+
+        $stages=$repositoryStage->findAll();
+
+        return $this->render('pro_stage/stages.html.twig',['id_stage'=>$id]);
     }
 }

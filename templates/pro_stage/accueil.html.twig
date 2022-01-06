@@ -4,13 +4,16 @@
 {% block body %}
     <div class="row">
 		<div class="col-md-12">
-        <h3>Nouveautés :</h3>
+        <h3>Les derniers stages enregistrer :</h3>
 		</div>
 	</div>
     <div class="row shadow p-3 mb-5 bg-body rounded">
-		{% for unStage in stage %}
-			<!--Box d'un stage--!>
-			<div class="col-md-4">
+		{% for unStage in listeStages %}
+			
+				<!--Box d'un stage--!>
+				<div class="col-md-4">
+				
+			
 				<h2>
 					{{unStage.titre}}
 				</h2>
@@ -21,6 +24,8 @@
 					<a class="btn" href="/stages/{{unStage.id}}">En savoir plus »</a>
 				</p>
 			</div>
+
+			
 		{% endfor %}
 	</div>
 {% endblock %}
