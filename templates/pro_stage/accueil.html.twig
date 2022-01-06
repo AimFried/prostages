@@ -8,38 +8,19 @@
 		</div>
 	</div>
     <div class="row shadow p-3 mb-5 bg-body rounded">
-		<div class="col-md-4">
-			<h2>
-				Stage n°1
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<a class="btn" href="/stages/1">En savoir plus »</a>
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Stage n°2
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<a class="btn" href="/stages/2">En savoir plus »</a>
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>
-				Stage n°3
-			</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<a class="btn" href="/stages/3">En savoir plus »</a>
-			</p>
-		</div>
+		{% for unStage in stage %}
+			<!--Box d'un stage--!>
+			<div class="col-md-4">
+				<h2>
+					{{unStage.titre}}
+				</h2>
+				<p>
+					{{unStage.mission}}
+				</p>
+				<p>
+					<a class="btn" href="/stages/{{unStage.id}}">En savoir plus »</a>
+				</p>
+			</div>
+		{% endfor %}
 	</div>
 {% endblock %}
