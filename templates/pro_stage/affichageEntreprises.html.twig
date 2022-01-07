@@ -19,7 +19,7 @@
 				{% for uneEntreprise in entreprises %}
 					<tr>
 						<th scope="row">{{uneEntreprise.id}}</th>
-						<td>{{uneEntreprise.nom}}</td>
+						<td><a href="{{path('affichageStageParEntreprise', {id:uneEntreprise.id})}}">{{uneEntreprise.nom}}</a></td>
 						<td>{{uneEntreprise.adresse}}</td>
 						<td>{{uneEntreprise.activite}}</td>
 					</tr>

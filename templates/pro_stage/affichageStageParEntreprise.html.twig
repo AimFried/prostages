@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}ProStage | Entreprise{% endblock %}
+{% block title %}ProStage | Listes des stages chez {{ entreprise.nom}} {% endblock %}
 
 {% block body %}
 <div class="row">
@@ -16,10 +16,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for uneEntreprise in entreprises %}
+				{% for uneEntreprise in entreprise.stages %}
 					<tr>
 						<th scope="row">{{uneEntreprise.id}}</th>
-						<td>{{uneEntreprise.nom}}</td>
+						<td>{{uneEntreprise.stages.nom}}</td>
 						<td>{{uneEntreprise.adresse}}</td>
 						<td>{{uneEntreprise.activite}}</td>
 					</tr>
