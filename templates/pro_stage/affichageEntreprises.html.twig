@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}ProStage | Listes des entreprises{% endblock %}
+
+{% block body %}
+<div class="row">
+		<div class="col-md-12">
+        <h3>Liste des entreprises :</h3>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th>Nom</th>
+					<th>Adresse</th>
+					<th>Activité</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for uneEntreprise in entreprises %}
+					<tr>
+						<th scope="row">{{uneEntreprise.id}}</th>
+						<td>{{uneEntreprise.nom}}</td>
+						<td>{{uneEntreprise.adresse}}</td>
+						<td>{{uneEntreprise.activite}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+			
+		</div>
+	</div>
+{% endblock %}

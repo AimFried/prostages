@@ -1,46 +1,42 @@
 {% extends 'base.html.twig' %}
-{% block title %}ProStage | Stages n° {{id_stage}} {% endblock %}
+{% block title %}ProStage | Stages n° {{stage.id}} {% endblock %}
 
 
 {% block body %}
 <div class="row">
+		</div>
 		<div class="col-md-4">
 			<h3>
-				ID : 
+				Titre :  {{stage.titre}}
 			</h3>
 		</div>
 		<div class="col-md-4">
 			<h3>
-				Nom :  
-			</h3>
-		</div>
-		<div class="col-md-4">
-			<h3>
-				Formation : 
+				Mission : {{stage.mission}}
 			</h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">
 			<h3>
-				Titre : 
+				Email : {{stage.email}}
 			</h3>
 		</div>
 		<div class="col-md-4">
 			<h3>
-				Activité :
+				Activité : {{stage.entreprise.activite}}
 			</h3>
 		</div>
 		<div class="col-md-4">
 			<h3>
-				Mail :
+				Entreprise : {{stage.entreprise.nom}}
 			</h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-2">
 			<h3>
-				Description :
+				Site web : {{stage.entreprise.URLsite}}
 			</h3>
 		</div>
 		<div class="col-md-10">
