@@ -1,69 +1,89 @@
 <!DOCTYPE html>
 <html>
-    {#Init de bootstrap CSS & JS#}
+        <!--BOOTSTRAP & JAVASCRIPT--!>
+        {#Init de bootstrap CSS & JS#}
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https: /js/bootstrap.min.js"></script>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+            <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+                {# Run `composer require symfony/webpack-encore-bundle`
+             and uncomment the following Encore helpers to start using Symfony UX #}
+            {% block stylesheets %}
+                {#{{ encore_entry_link_tags('app') }}#}
+            {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+            {% block javascripts %}
+                {#{{ encore_entry_script_tags('app') }}#}
+            {% endblock %}
     </head>
     <body>
+
+
         {#Bloc dédié au header#}
         {% block header %}
         <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-2">
-			<img class="rounded-2" alt="Image ProStage" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
-		</div>
-		<div class="col-md-10">
-			<h1>
-				Bienvenue sur ProStage !
-			</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light p-3 mb-2 bg-dark text-white rounded-3">
-				 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="navbar-toggler-icon"></span>
-				</button> <a class="navbar-brand text-light" href="/"><h3>Accueil</h3></a>
-                <h3>|</h3>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							 <a class="nav-link text-light" href="/entreprises"><h3>Entreprise</h3></a>
-						</li>
-                        <li class="nav-item">
-							 <a class="nav-link text-light" href="/formations"><h3>Formation</h3></a>
-						</li>				
-		    		</ul>
-				</div>
-			</nav>
-		</div>
-	</div>
+        <div class="row">
+            <div class="col-md-6">
+                <img alt="Logo ProStage" src="https://static.legisocial.fr/site_media/1024/uploads/stage_xs.jpg" class="rounded" />
+            </div>
 
+            <div class="col-md-6">
+                <center><h1>ProStage vous permet de trouver un stage facilement !</h1></center>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-3 mb-2 bg-dark text-white rounded-3">
+				 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					        <span class="navbar-toggler-icon"></span>
+				        </button> <a class="navbar-brand text-light" href="/"><h3>Accueil</h3></a>
+                        <h3>|</h3>
+				        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="/entreprises"><h3>Entreprise</h3></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="/formations"><h3>Formation</h3></a>
+                                </li>				
+                            </ul>
+			        	</div>
+			        </nav>
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+	        </div>
         {% endblock %}
+        
         {#Bloc dédié au body#}
         {% block body %}
         {% endblock %}
     </body>
     <footer>
-    {#Bloc dédié au footer#}
+        {#Bloc dédié au footer#}
         {% block footer %}
         {% endblock %}
         </div>
     </footer>
-    
 </html>

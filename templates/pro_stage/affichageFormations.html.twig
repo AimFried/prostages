@@ -16,7 +16,7 @@
 			<tbody>
 				{% for uneFormation in formations %}
 					<tr>
-						<th scope="row">{{uneFormation.nomCourt}}</th>
+						<th scope="row"><a href="{{path('affichageStageParFormation', {id:uneFormation.id})}}">{{uneFormation.nomCourt}}</a></th>
 						<th scope="row">{{uneFormation.nomLong}}</th>
 					</tr>
 				{% endfor %}

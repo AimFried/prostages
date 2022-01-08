@@ -1,32 +1,47 @@
 {% extends 'base.html.twig' %}
-{% block title %}ProStage | Listes des stages chez {{ entreprise.nom}} {% endblock %}
+{% block title %}ProStage | Listes des stages chez {{ entreprise.nom}}{% endblock %}
 
 {% block body %}
-<div class="row">
+	<div class="row">
 		<div class="col-md-12">
-        <h3>Liste des entreprises :</h3>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Activité</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for uneEntreprise in entreprise.stages %}
-					<tr>
-						<th scope="row">{{uneEntreprise.id}}</th>
-						<td>{{uneEntreprise.stages.nom}}</td>
-						<td>{{uneEntreprise.adresse}}</td>
-						<td>{{uneEntreprise.activite}}</td>
-					</tr>
+			{% set nbrStage = 0 %}
+				{% for unStage in stage %}
+					{% if unStage.entreprise.id == entreprise.id %}
+						{% set nbrStage = nbrStage + 1 %}
+					{% endif %}
 				{% endfor %}
-			</tbody>
+			<h3>{{nbrStage}} stage(s) : {{ entreprise.nom}}</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Entreprise</th>
+						<th>Titre</th>
+						<th>Mission</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					{% set pasDeStage = true %}
+					{% for unStage in stage %}
+						{% if unStage.entreprise.id == entreprise.id %}
+							{% set pasDeStage = false %}
+							<tr>
+								<th scope="row">{{unStage.entreprise.nom}}</th>
+								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
+								<td>{{unStage.mission}}</td>
+							</tr>
+						{% endif %}	
+					{% endfor %}
+					{% if pasDeStage == true %}
+						<tr>
+							<th scope="row">Vide</th>
+								<td>Vide</td>
+								<td>Vide</td>
+							</tr>
+					{% endif %}
+				</tbody>
 			</table>
-			
 		</div>
 	</div>
 {% endblock %}

@@ -46,7 +46,11 @@ class ProStageController extends AbstractController
         
         $entreprise=$repositoryEntreprise->find($id);
 
-        return $this->render('pro_stage/affichageStageParEntreprise.html.twig', ['entreprise'=>$entreprise,
+        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+        //Récupération de toutes les entitées de la table
+        $stage=$repositoryStage->findAll();
+
+        return $this->render('pro_stage/affichageStageParEntreprise.html.twig', ['entreprise'=>$entreprise,'stage' =>$stage,
         ]);
     }
 

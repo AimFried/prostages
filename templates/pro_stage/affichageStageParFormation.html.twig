@@ -1,32 +1,34 @@
 {% extends 'base.html.twig' %}
-{% block title %}ProStage | Entreprise{% endblock %}
+{% block title %}ProStage | {% endblock %}
 
 {% block body %}
-<div class="row">
+	<div class="row">
 		<div class="col-md-12">
-        <h3>Liste des entreprises :</h3>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Activité</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for uneEntreprise in entreprises %}
+			<h3> stage(s) :</h3>
+			<table class="table">
+				<thead>
 					<tr>
-						<th scope="row">{{uneEntreprise.id}}</th>
-						<td>{{uneEntreprise.nom}}</td>
-						<td>{{uneEntreprise.adresse}}</td>
-						<td>{{uneEntreprise.activite}}</td>
+						<th scope="col">Nom</th>
+						<th>Titre</th>
+						<th>Entreprise</th>
+						<th>Email</th>
 					</tr>
-				{% endfor %}
-			</tbody>
+				</thead>
+				<tbody>
+					
+					
+					{% for uneFormation in formation %}
+						{% if uneFormation%}
+							<tr>
+								<th scope="row">{{uneFormation.nomCourt}}</th>
+								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
+								<td>{{unStage.mission}}</td>
+							</tr>
+						{% endif%}
+					{% endfor %}
+					
+				</tbody>
 			</table>
-			
 		</div>
 	</div>
 {% endblock %}
