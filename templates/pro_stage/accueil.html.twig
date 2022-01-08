@@ -5,25 +5,23 @@
 		{% endblock %}
 {% block body %}
         
-	<div class="row shadow p-3 mb-5 bg-body rounded">
-		{% for unStage in stages %}
-			
-				<!--Box d'un stage--!>
-				<div class="col-md-4">
-				
-			
-				<h2>
+<div class="row shadow p-3 mb-5 bg-body rounded">
+{% for unStage in stages %}
+<div class="col-md-6" style="margin-bottom:15px;">
+			<div class="card bg-default">
+				<h5 class="card-header">
 					{{unStage.titre}}
-				</h2>
-				<p>
-					{{unStage.mission}}
-				</p>
-				<p>
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+						{{unStage.mission}}
+					</p>
+				</div>
+				<div class="card-footer">
 					<a class="btn" href="/stages/{{unStage.id}}">En savoir plus »</a>
-				</p>
+				</div>
 			</div>
-
-			
+		</div>
 		{% endfor %}
 	</div>
 {% endblock %}

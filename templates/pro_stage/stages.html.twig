@@ -3,57 +3,58 @@
 
 
 {% block body %}
-<div class="row">
-		</div>
-		<div class="col-md-4">
-			<h3>
-				Titre :  {{stage.titre}}
-			</h3>
-		</div>
-		<div class="col-md-4">
-			<h3>
-				Mission : {{stage.mission}}
-			</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<h3>
-				Email : {{stage.email}}
-			</h3>
-		</div>
-		<div class="col-md-4">
-			<h3>
-				Activité : {{stage.entreprise.activite}}
-			</h3>
-		</div>
-		<div class="col-md-4">
-			<h3>
-				Entreprise : {{stage.entreprise.nom}}
-			</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<h3>
-				Site web : {{stage.entreprise.URLsite}}
-			</h3>
-		</div>
-		<div class="col-md-10">
-			<p>
-				Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-			</p>
-		</div>
-	</div>
-    <div class="row">
-		<div class="col-md-10">
-		</div>
-		<div class="col-md-2">
-			 
-			<button type="button" class="btn btn-success">
-				Postulez !
-			</button>
-		</div>
-	</div>
 
+<div class="row">
+		<div class="col-md-12" style="margin:15px;">
+			<div class="card bg-default">
+				<h5 class="card-header">
+					<strong>Information générale :</strong> 
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Titre :</strong>  {{stage.titre}}
+					</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Mission :</strong>  {{stage.mission}}
+					</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Email :</strong>  {{stage.email}}
+					</p>
+				</div>
+				<div class="card-footer"></div>
+			</div>
+		
+		
+			<div class="card">
+				<h5 class="card-header">
+					<strong>Information entreprise  :</strong>
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Nom :</strong><a href="{{path('affichageStageParEntreprise', {id:stage.entreprise.id})}}">{{stage.entreprise.nom}}</a>
+					</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Activite :</strong> {{stage.entreprise.activite}}
+					</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						<strong>Site Web :</strong> {{stage.entreprise.URLsite}}
+					</p>
+				</div>
+				<div class="card-footer">
+					<strong>Adresse :</strong>{{stage.entreprise.adresse}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<right><button type="button" class="btn btn-success" style="margin-left:30px;"></right>
+			Postulez !
+		</button>
 {% endblock %}

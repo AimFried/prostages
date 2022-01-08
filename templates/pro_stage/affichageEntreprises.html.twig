@@ -15,7 +15,6 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">ID</th>
 					<th>Nom</th>
 					<th>Adresse</th>
 					<th>Activité</th>
@@ -24,7 +23,6 @@
 			<tbody>
 				{% for uneEntreprise in entreprises %}
 					<tr>
-						<th scope="row">{{uneEntreprise.id}}</th>
 						<td><a href="{{path('affichageStageParEntreprise', {id:uneEntreprise.id})}}">{{uneEntreprise.nom}}</a></td>
 						<td>{{uneEntreprise.adresse}}</td>
 						<td>{{uneEntreprise.activite}}</td>

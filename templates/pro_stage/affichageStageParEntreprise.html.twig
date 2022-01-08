@@ -32,12 +32,14 @@
 								<th scope="row">{{unStage.entreprise.nom}}</th>
 								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
 								<td>{{unStage.mission}}</td>
+								<td>{{unStage.email}}</td>
 							</tr>
 						{% endif %}	
 					{% endfor %}
 					{% if pasDeStage == true %}
 						<tr>
 							<th scope="row">Vide</th>
+								<td>Vide</td>
 								<td>Vide</td>
 								<td>Vide</td>
 							</tr>
