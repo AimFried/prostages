@@ -1,18 +1,23 @@
-{% extends 'base.html.twig' %}
-{% block title %}ProStage | Listes des stages chez {{ entreprise.nom}}{% endblock %}
+{% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
+
+{# Block de titre de l'onglet de la page #}
+{% block title %}Listes des stages chez {{ entreprise.nom}}{% endblock %}
+
+{# Block d'information générale sur l'affichage générer #}
 {% block information %}
-	{% set nbrStage = 0 %}
-				{% for unStage in stage %}
-					{% if unStage.entreprise.id == entreprise.id %}
-						{% set nbrStage = nbrStage + 1 %}
-					{% endif %}
-				{% endfor %}
-			<h3>{{nbrStage}} stage(s) : {{ entreprise.nom}}</h3>	
+{% set nbrStage = 0 %}
+	{# Boucle permettant de déduire le nombre de stage qu'une entreprise séléctionner propose #}
+	{% for unStage in stage %}
+		{% if unStage.entreprise.id == entreprise.id %}
+			{% set nbrStage = nbrStage + 1 %}
+		{% endif %}
+	{% endfor %}
+	<h3>{{nbrStage}} stage(s) : {{ entreprise.nom}}</h3>	
 {% endblock %}
+
 {% block body %}
 	<div class="row">
 		<div class="col-md-12">
-			
 			<table class="table">
 				<thead>
 					<tr>
@@ -22,27 +27,30 @@
 						<th>Email</th>
 					</tr>
 				</thead>
-				<tbody>
-					
-					{% set pasDeStage = true %}
+				<tbody>	
+				{% set pasDeStage = true %}
+					{# Boucle permettant d'afficher tous les stages d'une entreprise sélectionné #}
 					{% for unStage in stage %}
+						{# Si le stage provient de l'entreprise, alors affiche#}
 						{% if unStage.entreprise.id == entreprise.id %}
 							{% set pasDeStage = false %}
 							<tr>
 								<th scope="row">{{unStage.entreprise.nom}}</th>
+								{# Redirection du lien vers une page détaillant le stage sélectionné #}
 								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
 								<td>{{unStage.mission}}</td>
 								<td>{{unStage.email}}</td>
 							</tr>
 						{% endif %}	
 					{% endfor %}
+					{# Si une entreprise ne possède pas de stage alors #}
 					{% if pasDeStage == true %}
 						<tr>
 							<th scope="row">Vide</th>
-								<td>Vide</td>
-								<td>Vide</td>
-								<td>Vide</td>
-							</tr>
+							<td>Vide</td>
+							<td>Vide</td>
+							<td>Vide</td>
+						</tr>
 					{% endif %}
 				</tbody>
 			</table>

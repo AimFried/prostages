@@ -1,36 +1,41 @@
-{% extends 'base.html.twig' %}
-{% block title %}ProStage | Listes des entreprises{% endblock %}
+{% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
+
+{# Block de titre de l'onglet de la page #}
+{% block title %}Listes des entreprises{% endblock %}
+
+{# Block d'information générale sur l'affichage générer #}
 {% block information %}
 	{% set nbrEntreprise = 0 %}
+	{# Boucle permettant de déduire le nombre d'entreprise enregistrer #}
 	{% for uneEntreprise in entreprises %}
 		{% set nbrEntreprise = nbrEntreprise + 1 %}
 	{% endfor %}
 	<h3>{{nbrEntreprise}} entreprise(s) enregistrer :</h3>
 {% endblock %}
+
 {% block body %}
-<div class="row">
+	<div class="row">
 		<div class="col-md-12">
-
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Activité</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for uneEntreprise in entreprises %}
+			<table class="table">
+				<thead>
 					<tr>
-						<td><a href="{{path('affichageStageParEntreprise', {id:uneEntreprise.id})}}">{{uneEntreprise.nom}}</a></td>
-						<td>{{uneEntreprise.adresse}}</td>
-						<td>{{uneEntreprise.activite}}</td>
+						<th>Nom</th>
+						<th>Adresse</th>
+						<th>Activité</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-			</table>
-			
+				</thead>
+				<tbody>
+					{# Boucle pour afficher toutes les entreprises #}
+					{% for uneEntreprise in entreprises %}
+						<tr>
+							{# Redirection du lien vers une page regroupant tous les stages d'une entreprise sélectionnée #}
+							<td><a href="{{path('affichageStageParEntreprise', {id:uneEntreprise.id})}}">{{uneEntreprise.nom}}</a></td>
+							<td>{{uneEntreprise.adresse}}</td>
+							<td>{{uneEntreprise.activite}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>	
 		</div>
 	</div>
 {% endblock %}

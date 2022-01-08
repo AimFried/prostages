@@ -1,27 +1,30 @@
-{% extends 'base.html.twig' %}
-{% block title %}ProStage | Accueil{% endblock %}
+
+{% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
+
+{# Block de titre de l'onglet de la page #}
+{% block title %}Accueil{% endblock %}
+
+{# Block d'information générale sur l'affichage générer #}
 {% block information %}
-			<h3>Les derniers stages enregistrer :</h3>
-		{% endblock %}
-{% block body %}
-        
-<div class="row shadow p-3 mb-5 bg-body rounded">
-{% for unStage in stages %}
-<div class="col-md-6" style="margin-bottom:15px;">
-			<div class="card bg-default">
-				<h5 class="card-header">
-					{{unStage.titre}}
-				</h5>
-				<div class="card-body">
-					<p class="card-text">
-						{{unStage.mission}}
-					</p>
-				</div>
-				<div class="card-footer">
-					<a class="btn" href="/stages/{{unStage.id}}">En savoir plus »</a>
+	<h3>Les derniers stages enregistrer :</h3>
+{% endblock %}
+
+{% block body %}  
+	<div class="row shadow p-3 mb-5 bg-body rounded">
+		{# Boucle pour afficher tous les stages de la base de données #}
+		{% for unStage in stages %}
+			<div class="col-md-6" style="margin-bottom:15px;">
+				<div class="card bg-default">
+					<h5 class="card-header">{{unStage.titre}}</h5>
+					<div class="card-body">
+						<p class="card-text">{{unStage.mission}}</p>
+					</div>
+					<div class="card-footer">
+						{# Redirection du lien vers une page détaillant le stage sélectionné #}
+						<a class="btn" href="/stages/{{unStage.id}}">En savoir plus »</a>
+					</div>
 				</div>
 			</div>
-		</div>
 		{% endfor %}
 	</div>
 {% endblock %}

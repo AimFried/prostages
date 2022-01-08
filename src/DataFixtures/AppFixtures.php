@@ -15,28 +15,34 @@ class AppFixtures extends Fixture
         // Création d'un générateur de données avec la librairie Faker
         $faker = \Faker\Factory::create('fr_FR');
 
-        // Création des différentes formations
+        ///---------CREATION FORMATIONS-----------
+
+        //Formation DUT Informatique
         $dutInfo = new Formation();
         $dutInfo->setNomLong("DUT Informatique");
         $dutInfo->setNomCourt("DUT Info");
 
+        //Formation DUT Informatique et Imagerie Numérique
         $dutInfoImagNum = new Formation();
         $dutInfoImagNum->setNomLong("DUT Informatique et Imagerie Numérique");
         $dutInfoImagNum->setNomCourt("DUT IIM");
 
+        //Formation DUT Gestion des entreprises et des administrations
         $dutGea = new Formation();
         $dutGea->setNomLong("DUT Gestion des entreprises et des administrations");
         $dutGea->setNomCourt("DUT GEA");
 
+        //Formation Licence programmation
         $lpProg = new Formation();
         $lpProg->setNomLong("Licence programmation");
         $lpProg->setNomCourt("LP");
 
+        //Formation DUT Génie Logiciel
         $dutGenieLogiciel = new Formation();
         $dutGenieLogiciel->setNomLong("DUT Genie Logiciel");
         $dutGenieLogiciel->setNomCourt("DUT GL");
 
-
+        //Insertion des différents formations dans un tableau
         $tableauFormations=array($dutInfo, $dutInfoImagNum, $dutGea, $lpProg, $dutGenieLogiciel);
 
         //Enregistrement et vérification des formations
@@ -45,7 +51,7 @@ class AppFixtures extends Fixture
             $manager->persist($formation);
         }
 
-        //Création de 15 entreprises
+        ///----------- CREATION DE 15 ENTREPRISES --------
         for($i = 0; $i < 16 ; $i++)
         {
             // Création module Entreprise
@@ -54,12 +60,13 @@ class AppFixtures extends Fixture
             $entreprise->setAdresse($faker->address);
             $entreprise->setActivite($faker->sentence($nbWords = 1, $variableNbWords = true));
             $entreprise->setURLsite($faker->url);
-            
             $entreprises[] = $entreprise; 
+
+            //Enregistrement de l'entreprise générée
             $manager->persist($entreprise);                       
         }
            
-         //Création de 15 stages
+         ///------------ CREATION DE 15 STAGES ---------
         for($i = 0 ; $i < 16 ; $i++)
         {
             $entrepriseAssocieAuStage = $faker->numberBetween($min=0, $max=14);
@@ -67,15 +74,17 @@ class AppFixtures extends Fixture
 
             // Création module Stage
             $stage = new Stage();
-            $stage->setTitre($faker->realText(50,2));
+            $stage->setTitre($faker->realText(10,2));
             $stage->setMission($faker->realText(200,2));
             $stage->setEmail($faker->email);
             $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
             $stage->addFormation($tableauFormations[$formationAssocieAuStage]);
+
+            //Enregistrement du stage générée
             $manager->persist($stage);               
         }
         
-        //Envoi des objets crées en base de données
+        //Envoi de tous les objets générer (formations, entreprises et stages) dans la base de données
         $manager->flush();
     }
 }

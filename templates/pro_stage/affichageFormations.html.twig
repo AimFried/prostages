@@ -1,30 +1,38 @@
-{% extends 'base.html.twig' %}
-{% block title %}ProStage | Listes des formations{% endblock %}
+{% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
+
+{# Block de titre de l'onglet de la page #}
+{% block title %}Listes des formations{% endblock %}
+
+{# Block d'information générale sur l'affichage générer #}
 {% block information %}
 	{% set nbrFormation = 0 %}
+	{# Boucle permettant de déduire le nombre de formations enregistrer #}
 	{% for uneFormation in formations %}
 		{% set nbrFormation = nbrFormation + 1 %}
 	{% endfor %}
 	<h3>{{nbrFormation}} formation(s) enregistrer :</h3>
 {% endblock %}
+
 {% block body %}
-<div class="row">
+	<div class="row">
 		<div class="col-md-12">
-        <table class="table">
-			<thead>
-				<tr>
-					<th>Acronyme</th>
-					<th>Nom complet</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for uneFormation in formations %}
+			<table class="table">
+				<thead>
 					<tr>
-						<th scope="row"><a href="{{path('affichageStageParFormation', {id:uneFormation.id})}}">{{uneFormation.nomCourt}}</a></th>
-						<th scope="row">{{uneFormation.nomLong}}</th>
+						<th>Acronyme</th>
+						<th>Nom complet</th>
 					</tr>
-				{% endfor %}
-			</tbody>
+				</thead>
+				<tbody>
+					{# Boucle pour afficher toutes les formations #}
+					{% for uneFormation in formations %}
+						<tr>
+							{# Redirection du lien vers une page regroupant tous les stages en fonction d'une formation sélectionné #}
+							<th scope="row"><a href="{{path('affichageStageParFormation', {id:uneFormation.id})}}">{{uneFormation.nomCourt}}</a></th>
+							<th scope="row">{{uneFormation.nomLong}}</th>
+						</tr>
+					{% endfor %}
+				</tbody>
 			</table>
 		</div>
 	</div>

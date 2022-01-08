@@ -5,9 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\STAGE;
-use App\Entity\ENTREPRISE;
-use App\Entity\FORMATION;
+use App\Entity\STAGE; //Fichier associé à la table Stage
+use App\Entity\ENTREPRISE; //Fichier associé à la table Entreprise
+use App\Entity\FORMATION; //Fichier associé à la table Formation
 
 class ProStageController extends AbstractController
 {
@@ -16,12 +16,13 @@ class ProStageController extends AbstractController
      */
     public function index(): Response
     {
+        //Création d'un repository pointant vers la classe "Stage"
         $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
-        //Récupération de toutes les entitées de la table
+        //Récupération des attributs de la classe "Stage"
         $stages=$repositoryStage->findAll();
 
-        return $this->render('pro_stage/accueil.html.twig', ['stages' =>$stages,
-        ]);
+        //Envoi de l'entitée stage vers la template
+        return $this->render('pro_stage/accueil.html.twig', ['stages' =>$stages,]);
     }
 
     /**
@@ -29,12 +30,13 @@ class ProStageController extends AbstractController
      */
     public function affichageEntreprises(): Response
     {
+        //Création d'un repository pointant vers la classe "Entreprise"
         $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
-
+        //Récupération des attributs de la classe "Entreprise"
         $entreprises=$repositoryEntreprise->findAll();
 
-        return $this->render('pro_stage/affichageEntreprises.html.twig', ['entreprises'=>$entreprises,
-        ]);
+        //Envoi de l'entitée stage vers la template
+        return $this->render('pro_stage/affichageEntreprises.html.twig', ['entreprises'=>$entreprises,]);
     }
 
     /**
@@ -42,16 +44,20 @@ class ProStageController extends AbstractController
      */
     public function affichageStageParEntreprise($id): Response
     {
+        ///ENTREPRISE
+        //Création d'un repository pointant vers la classe "Entreprise"
         $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
-        
+        //Récupération des attributs de la classe "Entreprise" correspondant à $id
         $entreprise=$repositoryEntreprise->find($id);
 
+        ///STAGE
+        //Création d'un repository pointant vers la classe "Stage"
         $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
-        //Récupération de toutes les entitées de la table
+        //Récupération des attributs de la classe "Stage"
         $stage=$repositoryStage->findAll();
 
-        return $this->render('pro_stage/affichageStageParEntreprise.html.twig', ['entreprise'=>$entreprise,'stage' =>$stage,
-        ]);
+        //Envoi des entitées stage vers la template
+        return $this->render('pro_stage/affichageStageParEntreprise.html.twig', ['entreprise'=>$entreprise,'stage' =>$stage,]);
     }
 
 
@@ -60,13 +66,13 @@ class ProStageController extends AbstractController
      */
     public function affichageFormations(): Response
     {
+        //Création d'un repository pointant vers la classe "Formation"
         $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
-
-        
+        //Récupération des attributs de la classe "Formation"        
         $formations=$repositoryFormation->findAll();
 
-        return $this->render('pro_stage/affichageFormations.html.twig', ['formations'=>$formations,
-        ]);
+        //Envoi de l'entitée stage vers la template
+        return $this->render('pro_stage/affichageFormations.html.twig', ['formations'=>$formations,]);
     }
 
     /**
@@ -74,13 +80,13 @@ class ProStageController extends AbstractController
      */
     public function affichageStageParFormations($id): Response
     {
+        //Création d'un repository pointant vers la classe "Formation"
         $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
-
-        
+        //Récupération des attributs de la classe "Formation" correspondant à $id
         $formation=$repositoryFormation->find($id);
 
-        return $this->render('pro_stage/affichageStageParFormation.html.twig', ['formation'=>$formation,
-        ]);
+        //Envoi de l'entité stage vers la template
+        return $this->render('pro_stage/affichageStageParFormation.html.twig', ['formation'=>$formation,]);
     }
 
     /**
@@ -88,11 +94,12 @@ class ProStageController extends AbstractController
      */
     public function affichageStage($id): Response
     {
+        //Création d'un repository pointant vers la classe "Stage"
         $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
-
+        //Récupération des attributs de la classe "Stage" correspondant à $id
         $stage=$repositoryStage->find($id);
 
-        return $this->render('pro_stage/stages.html.twig',['stage'=>$stage,
-        ]);
+        //Envoi de l'entité stage vers la template
+        return $this->render('pro_stage/affichageStages.html.twig',['stage'=>$stage,]);
     }
 }

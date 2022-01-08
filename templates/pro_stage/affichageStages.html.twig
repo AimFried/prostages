@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
+
+{# Block de titre de l'onglet de la page #}
+{% block title %}Stages n° {{stage.id}} {% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-md-12" style="margin:15px;">
+		{# 1er BOX D'INFORMATION #}
+			<div class="card bg-default">
+				<h5 class="card-header"><strong>Information générale :</strong></h5>
+				<div class="card-body">
+					<p class="card-text"><strong>Titre :</strong>{{stage.titre}}</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text"><strong>Mission :</strong>{{stage.mission}}</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text"><strong>Email :</strong>{{stage.email}}</p>
+				</div>
+				<div class="card-footer"></div>
+			</div>
+		{# 2éme BOX D'INFORMATION #}
+			<div class="card">
+				<h5 class="card-header"><strong>Information entreprise  :</strong></h5>
+				<div class="card-body">
+					{# Redirection du lien vers une page regroupant tous les stages d'une entreprise sélectionnée#}
+					<p class="card-text"><strong>Nom :</strong><a href="{{path('affichageStageParEntreprise', {id:stage.entreprise.id})}}">{{stage.entreprise.nom}}</a></p>
+				</div>
+				<div class="card-body">
+					<p class="card-text"><strong>Activite :</strong>{{stage.entreprise.activite}}</p>
+				</div>
+				<div class="card-body">
+					<p class="card-text"><strong>Site Web :</strong>{{stage.entreprise.URLsite}}</p>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><strong>Adresse :</strong>{{stage.entreprise.adresse}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{# Bouton esthétique pour postulez #}
+	<right><button type="button" class="btn btn-success" style="margin-left:30px;"></right>Postulez !</button>
+{% endblock %}
