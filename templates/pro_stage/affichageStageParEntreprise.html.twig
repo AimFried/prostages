@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block title %}ProStage | Listes des stages chez {{ entreprise.nom}}{% endblock %}
-
-{% block body %}
-	<div class="row">
-		<div class="col-md-12">
-			{% set nbrStage = 0 %}
+{% block information %}
+	{% set nbrStage = 0 %}
 				{% for unStage in stage %}
 					{% if unStage.entreprise.id == entreprise.id %}
 						{% set nbrStage = nbrStage + 1 %}
 					{% endif %}
 				{% endfor %}
-			<h3>{{nbrStage}} stage(s) : {{ entreprise.nom}}</h3>
+			<h3>{{nbrStage}} stage(s) : {{ entreprise.nom}}</h3>	
+{% endblock %}
+{% block body %}
+	<div class="row">
+		<div class="col-md-12">
+			
 			<table class="table">
 				<thead>
 					<tr>

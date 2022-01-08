@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}ProStage | Accueil{% endblock %}
-
+{% block information %}
+			<h3>Les derniers stages enregistrer :</h3>
+		{% endblock %}
 {% block body %}
-    <div class="row">
-		<div class="col-md-12">
-        <h3>Les derniers stages enregistrer :</h3>
-		</div>
-	</div>
-    <div class="row shadow p-3 mb-5 bg-body rounded">
+        
+	<div class="row shadow p-3 mb-5 bg-body rounded">
 		{% for unStage in stages %}
 			
 				<!--Box d'un stage--!>

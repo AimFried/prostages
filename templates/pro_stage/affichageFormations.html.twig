@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block title %}ProStage | Listes des formations{% endblock %}
-
+{% block information %}
+	{% set nbrFormation = 0 %}
+	{% for uneFormation in formations %}
+		{% set nbrFormation = nbrFormation + 1 %}
+	{% endfor %}
+	<h3>{{nbrFormation}} formation(s) enregistrer :</h3>
+{% endblock %}
 {% block body %}
 <div class="row">
 		<div class="col-md-12">
-        <h3>Liste des formations :</h3>
-
-		<table class="table">
+        <table class="table">
 			<thead>
 				<tr>
 					<th>Acronyme</th>
