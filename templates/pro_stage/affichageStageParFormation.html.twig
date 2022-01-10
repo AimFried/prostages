@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %} {# Implémentation à la template, la template de structure de base #}
 
 {# Block de titre de l'onglet de la page #}
-{% block title %}{% endblock %}
+{% block title %}Listes des stages de formation {{ formation.nomCourt}}{% endblock %}
+
+{# Block d'information générale sur l'affichage générer #}
+{% block information %}
+{% set nbrStage = 0 %}
+	{# Boucle permettant de déduire le nombre de stage qu'une entreprise séléctionner propose #}
+	{% for stage in formation.stage %}
+			{% set nbrStage = nbrStage + 1 %}
+	{% endfor %}
+	<h3>{{nbrStage}} stage(s) : {{ formation.nomCourt}}</h3>	
+{% endblock %}
 
 {% block body %}
 	<div class="row">
 		<div class="col-md-12">
-			<h3> stage(s) :</h3>
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">Nom</th>
+						<th scope="col">Formation</th>
 						<th>Titre</th>
 						<th>Entreprise</th>
 						<th>Email</th>
 					</tr>
 				</thead>
 				<tbody>
-					
-					
-					{% for uneFormation in formation %}
-						{% if uneFormation%}
-							<tr>
-								<th scope="row">{{uneFormation.nomCourt}}</th>
-								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
-								<td>{{unStage.mission}}</td>
-							</tr>
-						{% endif%}
+				{% set pasDeStage = true %}
+					{# Boucle permettant d'afficher tous les stages d'une formation sélectionné #}					
+					{% for stage in formation.stage%}
+						{% set pasDeStage = false %}	
+						<tr>
+							<th scope="row">{{formation.nomLong}}</th>
+							<td><a href="{{path('affichageStage', {id:stage.id})}}">{{stage.titre}}</a></td>
+							<td>{{stage.mission}}</td>
+							<td>{{stage.email}}</td>
+						</tr>
 					{% endfor %}
-					
+					{# Si une formation ne possède pas de stage alors #}
+					{% if pasDeStage == true %}
+						<tr>
+							<th scope="row">Vide</th>
+							<td>Vide</td>
+							<td>Vide</td>
+							<td>Vide</td>
+						</tr>
+					{% endif %}
 				</tbody>
 			</table>
 		</div>
