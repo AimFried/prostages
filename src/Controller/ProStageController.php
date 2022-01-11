@@ -98,8 +98,8 @@ class ProStageController extends AbstractController
         $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
         //Récupération des attributs de la classe "Stage" correspondant à $id
         $stage=$repositoryStage->find($id);
-
+        
         //Envoi de l'entité stage vers la template
-        return $this->render('pro_stage/affichageStages.html.twig',['stage'=>$stage,]);
+        return $this->render('pro_stage/affichageStages.html.twig',['stage'=>$stage]);
     }
 }

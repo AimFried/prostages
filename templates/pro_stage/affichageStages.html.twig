@@ -13,6 +13,12 @@
 					<p class="card-text"><strong>Titre :</strong>{{stage.titre}}</p>
 				</div>
 				<div class="card-body">
+					{# Boucle pour affciher la formation liée au stage à afficher #}
+					{% for laFormation in stage.formation %}
+						<p class="card-text"><strong>Formation :</strong>{{laFormation.nomCourt}}</p>
+					{% endfor %}
+				</div>
+				<div class="card-body">
 					<p class="card-text"><strong>Mission :</strong>{{stage.mission}}</p>
 				</div>
 				<div class="card-body">
