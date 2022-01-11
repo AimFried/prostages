@@ -15,7 +15,8 @@
 				<div class="card-body">
 					{# Boucle pour affciher la formation liée au stage à afficher #}
 					{% for laFormation in stage.formation %}
-						<p class="card-text"><strong>Formation :</strong>{{laFormation.nomCourt}}</p>
+						{# Redirection du lien vers une page regroupant tous les stages d'une formation sélectionnée#}
+						<p class="card-text"><strong>Formation :</strong><a href="{{path('affichageStageParFormation', {id:laFormation.id})}}">{{laFormation.nomCourt}}</a></p>
 					{% endfor %}
 				</div>
 				<div class="card-body">
