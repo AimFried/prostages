@@ -24,7 +24,6 @@
 						<th scope="col">Entreprise</th>
 						<th>Titre</th>
 						<th>Mission</th>
-						<th>Email</th>
 					</tr>
 				</thead>
 				<tbody>	
@@ -39,7 +38,6 @@
 								{# Redirection du lien vers une page détaillant le stage sélectionné #}
 								<td><a href="{{path('affichageStage', {id:unStage.id})}}">{{unStage.titre}}</a></td>
 								<td>{{unStage.mission}}</td>
-								<td>{{unStage.email}}</td>
 							</tr>
 						{% endif %}	
 					{% endfor %}
@@ -47,7 +45,6 @@
 					{% if pasDeStage == true %}
 						<tr>
 							<th scope="row">Vide</th>
-							<td>Vide</td>
 							<td>Vide</td>
 							<td>Vide</td>
 						</tr>

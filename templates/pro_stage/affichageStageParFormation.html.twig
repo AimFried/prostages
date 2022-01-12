@@ -22,7 +22,6 @@
 						<th scope="col">Formation</th>
 						<th>Titre</th>
 						<th>Mission</th>
-						<th>Email</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,14 +33,12 @@
 							<th scope="row">{{formation.nomLong}}</th>
 							<td><a href="{{path('affichageStage', {id:stage.id})}}">{{stage.titre}}</a></td>
 							<td>{{stage.mission}}</td>
-							<td>{{stage.email}}</td>
 						</tr>
 					{% endfor %}
 					{# Si une formation ne possède pas de stage alors #}
 					{% if pasDeStage == true %}
 						<tr>
 							<th scope="row">Vide</th>
-							<td>Vide</td>
 							<td>Vide</td>
 							<td>Vide</td>
 						</tr>
