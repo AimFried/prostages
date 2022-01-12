@@ -52,13 +52,16 @@ class AppFixtures extends Fixture
         }
 
         ///----------- CREATION DE 15 ENTREPRISES --------
+        // Activité d'entreprise a attribuer de façon aléatoire
+        $tabActivite = array('Développement web', 'Développement mobile', 'Développement logiciel', 'Maintenance informatique', 'Administration réseaux', 'Analyse de données', 'Métallurgie',"Multimédia", "Électronique");
         for($i = 0; $i < 16 ; $i++)
         {
             // Création module Entreprise
             $entreprise = new Entreprise();
+            $numEntreprise =  $faker->numberBetween($min=0, $max=8);
             $entreprise->setNom($faker->company);
             $entreprise->setAdresse($faker->address);
-            $entreprise->setActivite($faker->sentence($nbWords = 1, $variableNbWords = true));
+            $entreprise->setActivite($tabActivite[$numEntreprise]);
             $entreprise->setURLsite($faker->url);
             $entreprises[] = $entreprise; 
 
@@ -74,7 +77,7 @@ class AppFixtures extends Fixture
 
             // Création module Stage
             $stage = new Stage();
-            $stage->setTitre($faker->realText(10,2));
+            $stage->setTitre($faker->jobTitle);
             $stage->setMission($faker->realText(200,2));
             $stage->setEmail($faker->email);
             $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
