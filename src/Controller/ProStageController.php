@@ -8,16 +8,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\STAGE; //Fichier associé à la table Stage
 use App\Entity\ENTREPRISE; //Fichier associé à la table Entreprise
 use App\Entity\FORMATION; //Fichier associé à la table Formation
+use App\Repository\STAGERepository; //Repository de la classe Stage
+use App\Repository\FORMATIONRepository; //Repository de la classe Formation
+use App\Repository\ENTREPRISERepository; //Repository de la classe Entreprise
 
 class ProStageController extends AbstractController
 {
     /**
      * @Route("/", name="accueil")
      */
-    public function index(): Response
+    public function index(STAGERepository $repositoryStage): Response
     {
-        //Création d'un repository pointant vers la classe "Stage"
-        $repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
         //Récupération des attributs de la classe "Stage"
         $stages=$repositoryStage->findAll();
 
@@ -28,10 +29,8 @@ class ProStageController extends AbstractController
     /**
      * @Route("/entreprises", name="affichageEntreprises")
      */
-    public function affichageEntreprises(): Response
+    public function affichageEntreprises(ENTREPRISERepository $repositoryEntreprise): Response
     {
-        //Création d'un repository pointant vers la classe "Entreprise"
-        $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
         //Récupération des attributs de la classe "Entreprise"
         $entreprises=$repositoryEntreprise->findAll();
 
@@ -64,10 +63,8 @@ class ProStageController extends AbstractController
     /**
      * @Route("/formations", name="affichageFormations")
      */
-    public function affichageFormations(): Response
+    public function affichageFormations(FORMATIONRepository $repositoryFormation): Response
     {
-        //Création d'un repository pointant vers la classe "Formation"
-        $repositoryFormation=$this->getDoctrine()->getRepository(Formation::class);
         //Récupération des attributs de la classe "Formation"        
         $formations=$repositoryFormation->findAll();
 
