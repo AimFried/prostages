@@ -11,11 +11,23 @@ use App\Entity\STAGE;
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
-    {
-        // Création d'un générateur de données avec la librairie Faker
-        $faker = \Faker\Factory::create('fr_FR');
+    {   
+        //***************************************//
+        //GENERATEUR DE DONNEES - Faker Librairie//      
+        //***************************************//
 
-        ///---------CREATION FORMATIONS-----------
+        ////////////PARAMETRES DONNEES/////////////
+        ///////////////////////////////////////////
+        /////////////LANGUE DONNEES////////////////
+        $faker = \Faker\Factory::create('fr_FR');//
+        //////////////NOMBRES STAGES///////////////
+        $nombresDeStages = 15;/////////////////////
+        ////////////NOMBRES ENTREPRISE/////////////
+        $nombresDeEntreprises = 15;////////////////
+        ///////////////////////////////////////////
+        ///////////////////////////////////////////
+
+        //========== CREATION FORMATION(S) ============
 
         //Formation DUT Informatique
         $dutInfo = new Formation();
@@ -51,13 +63,15 @@ class AppFixtures extends Fixture
             $manager->persist($formation);
         }
 
-        ///----------- CREATION DE 15 ENTREPRISES --------
+        //========== CREATION ENTREPRISE(S) =============
+
         // Activité d'entreprise a attribuer de façon aléatoire
         $tabActivite = array('Développement web', 'Développement mobile', 'Développement logiciel', 'Maintenance informatique', 'Administration réseaux', 'Analyse de données', 'Métallurgie',"Multimédia", "Électronique");
-        for($i = 0; $i < 16 ; $i++)
+        for($i = 0; $i < $nombresDeEntreprises ; $i++)
         {
             // Création module Entreprise
             $entreprise = new Entreprise();
+            //Donne une valeur aléatoire
             $numEntreprise =  $faker->numberBetween($min=0, $max=8);
             $entreprise->setNom($faker->company);
             $entreprise->setAdresse($faker->address);
@@ -69,9 +83,10 @@ class AppFixtures extends Fixture
             $manager->persist($entreprise);                       
         }
            
-         ///------------ CREATION DE 15 STAGES ---------
-        for($i = 0 ; $i < 16 ; $i++)
+        //========== CREATION STAGE(S) ===================
+        for($i = 0 ; $i < $nombresDeStages ; $i++)
         {
+            //Donne une valeur aléatoire
             $entrepriseAssocieAuStage = $faker->numberBetween($min=0, $max=14);
             $formationAssocieAuStage = $faker->numberBetween($min=0, $max=4);
 
@@ -86,7 +101,6 @@ class AppFixtures extends Fixture
             //Enregistrement du stage générée
             $manager->persist($stage);               
         }
-        
         //Envoi de tous les objets générer (formations, entreprises et stages) dans la base de données
         $manager->flush();
     }
